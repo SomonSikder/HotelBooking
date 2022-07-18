@@ -1,10 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 dotenv.config();
 const port = process.env.PORT || 4000;
 
@@ -29,6 +31,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/rooms", roomRouter);
 app.use("/api/hotels", hotelRouter);
 
+// Server
 app.listen(4000, () => {
   connect();
   console.log(`Server is running on PORT ${port}`);
